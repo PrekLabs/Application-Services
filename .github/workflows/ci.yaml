@@ -34,6 +34,18 @@ jobs:
         docker build -t fastapi-service:latest FastApi-service/
         echo "Build completed successfully."
 
+    - name: Image scan - trivy
+      uses: aquasecurity/trivy-action@v0.68.0
+      with:
+        image-ref: fastapi-service:latest
+        format: sarif
+        output: trivy-report.sarif
+        exit-code: 1
+        severities: HIGH,CRITICAL,MEDIUM,LOW,UNKNOWN,NEGLIGIBLE
+      
+
+
+
 
 
 
