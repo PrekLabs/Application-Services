@@ -35,7 +35,7 @@ jobs:
         echo "Build completed successfully."
 
     - name: Image scan - trivy
-      uses: aquasecurity/trivy-action@v0.33.1
+      uses: aquasecurity/trivy-action@0.33.1
       with:
         image-ref: fastapi-service:latest
         format: sarif
