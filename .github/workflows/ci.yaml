@@ -31,9 +31,9 @@ jobs:
       run: |
         echo "Running CI build steps..."
         # Add your build commands here
-        docker build -t FasApi-service:latest FastApi-service/
+        docker build -t fastapi-service:latest FastApi-service/
         echo "Build completed successfully."
 
-    
+
 
 
