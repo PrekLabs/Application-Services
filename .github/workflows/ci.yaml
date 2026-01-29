@@ -27,6 +27,13 @@ jobs:
     - name: Secret scan - gitleaks
       uses: gitleaks/gitleaks-action@v2
      
-    - name: Testing the flow
-      run: echo "The CI workflow is running!" 
+    - name: CI Build Step
+      run: |
+        echo "Running CI build steps..."
+        # Add your build commands here
+        docker build -t FasApi-service:latest FastApi-service/
+        echo "Build completed successfully."
+
+    
+
 
