@@ -41,7 +41,7 @@ jobs:
         format: sarif
         output: trivy-report.sarif
         exit-code: 1
-        severities: HIGH,CRITICAL,MEDIUM,LOW,UNKNOWN,NEGLIGIBLE
+        severities: HIGH,CRITICAL,MEDIUM,LOW,UNKNOWN
 
     - name: Upload Trivy SARIF artifact
       if: always()
