@@ -36,7 +36,7 @@ jobs:
 
     - name: Image scan - trivy
       id: trivy-scan
-      uses: aquasecurity/trivy-action@v0.33.1
+      uses: aquasecurity/trivy-action@v0.33.0
       with:
         image-ref: fastapi-service:latest
         format: sarif
