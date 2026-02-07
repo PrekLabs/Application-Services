@@ -35,8 +35,7 @@ jobs:
         echo "Build completed successfully."
 
     - name: Image scan - trivy
-      id: trivy-scan
-      uses: aquasecurity/trivy-action@v0.33.0
+      uses: aquasecurity/trivy-action@v0.33.1
       with:
         image-ref: fastapi-service:latest
         format: sarif
@@ -52,12 +51,7 @@ jobs:
         name: trivy-results.sarif
         path: trivy-results.sarif
 
-    - name: Upload Trivy SARIF to GitHub (code scanning)
-      if: always()
-      uses: github/codeql-action/upload-sarif@v2
-      with:
-        sarif_file: trivy-results.sarif
-      
+  
 
 
 
