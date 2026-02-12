@@ -3,7 +3,7 @@ FROM python:3.11-alpine AS builder
 
 WORKDIR /app
 
-RUN pip install --upgrade pip
+RUN pip install --upgrade pip setuptools
 
 COPY requirements.txt .
 RUN pip install --no-cache-dir --prefix=/install -r requirements.txt
@@ -12,6 +12,8 @@ RUN pip install --no-cache-dir --prefix=/install -r requirements.txt
 FROM python:3.11-alpine
 
 WORKDIR /app
+
+RUN pip install --upgrade pip setuptools
 
 # Create non-root user
 RUN adduser -D appuser
