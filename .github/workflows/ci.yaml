@@ -31,7 +31,7 @@ jobs:
       run: |
         echo "Running CI build steps..."
         # Add your build commands here
-        docker build -t fastapi-service:latest FastApi-service/
+        docker build --pull --no-cache -t fastapi-service:latest FastApi-service/
         echo "Build completed successfully."
 
     - name: Image scan - trivy
