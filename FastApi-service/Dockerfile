@@ -1,5 +1,5 @@
 # ---------- Build stage ----------
-FROM python:3.11-slim-bookworm AS builder
+FROM python:3.11-alpine AS builder
 
 WORKDIR /app
 
@@ -9,16 +9,13 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY app/ app/
 
 # ---------- Runtime stage ----------
-FROM python:3.11-slim-bookworm
+FROM python:3.11-alpine
 
 WORKDIR /app
 
 COPY --from=builder /usr/local /usr/local
 COPY --from=builder /app/app app/
 
-RUN apt-get update && \
-    apt-get upgrade -y libc6 libc-bin && \
-    rm -rf /var/lib/apt/lists/*
 
 EXPOSE 8000
 
