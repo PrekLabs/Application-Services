@@ -3,19 +3,24 @@ FROM python:3.11-alpine AS builder
 
 WORKDIR /app
 
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --upgrade pip
 
-COPY app/ app/
+COPY requirements.txt .
+RUN pip install --no-cache-dir --prefix=/install -r requirements.txt
 
 # ---------- Runtime stage ----------
 FROM python:3.11-alpine
 
 WORKDIR /app
 
-COPY --from=builder /usr/local /usr/local
-COPY --from=builder /app/app app/
+# Create non-root user
+RUN adduser -D appuser
+USER appuser
 
+# Copy only installed packages
+COPY --from=builder /install /usr/local
+
+COPY app/ app/
 
 EXPOSE 8000
 
